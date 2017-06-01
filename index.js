@@ -1,10 +1,13 @@
-const BTCe = require('./lib/btce')
+// const BTCe = require('./lib/btce')
+const Poloniex = require('./lib/poloniex')
 
-let client = new BTCe()
+let client = new Poloniex()
+let from = 'btc'
+let to = ['ltc', 'eth', 'dsh']
 
-client.getCurrentConversions('btc', ['ltc', 'eth', 'dsh'], function (err, data) {
+client.getCurrentConversions(from, to, (err, data) => {
   if (err) {
-    console.error(err)
+    return console.error(err)
   }
 
   console.log(data)
