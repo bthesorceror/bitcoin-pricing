@@ -5,11 +5,13 @@ class Market extends React.Component {
   get rows () {
     return _.map(this.props.values, (value) => {
       let key = `${this.props.market}-${value.to}`
+      let fromValue = this.props.multiplier
+      let toValue = this.props.multiplier * value.last
 
       return (
         <tr key={key}>
-          <td>1 {value.from}</td>
-          <td>{value.last} {value.to}</td>
+          <td>{fromValue} {value.from}</td>
+          <td>{toValue} {value.to}</td>
         </tr>
       )
     })

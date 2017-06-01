@@ -9,7 +9,10 @@ class BestPrices extends React.Component {
   }
 
   onStateChange () {
-    this.setState(Store.bestPrices)
+    this.setState({
+      values: Store.bestPrices,
+      multiplier: Store.multiplier
+    })
   }
 
   componentDidMount () {
@@ -24,13 +27,16 @@ class BestPrices extends React.Component {
   }
 
   get rows () {
-    return _.map(_.keys(this.state), (key) => {
-      let current = this.state[key]
+    return _.map(_.keys(this.state.values), (key) => {
+      let current = this.state.values[key]
+      let fromValue = this.state.multiplier
+      let toValue = this.state.multiplier * current.last
+
       return (
         <tr key={key}>
           <td>{current.market}</td>
-          <td>1 {current.from}</td>
-          <td>{current.last} {current.to}</td>
+          <td>{fromValue} {current.from}</td>
+          <td>{toValue} {current.to}</td>
         </tr>
       )
     })

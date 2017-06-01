@@ -10,7 +10,10 @@ class Markets extends React.Component {
   }
 
   onStateChange () {
-    this.setState(Store.getAllByMarket())
+    this.setState({
+      multiplier: Store.multiplier,
+      values: Store.getAllByMarket()
+    })
   }
 
   componentDidMount () {
@@ -25,11 +28,11 @@ class Markets extends React.Component {
   }
 
   get rows () {
-    return _.map(_.keys(this.state), (key) => {
-      let current = this.state[key]
+    return _.map(_.keys(this.state.values), (key) => {
+      let current = this.state.values[key]
 
       return (
-        <Market key={key} market={key} values={current} />
+        <Market key={key} market={key} values={current} multiplier={this.state.multiplier} />
       )
     })
   }

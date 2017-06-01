@@ -6,10 +6,16 @@ class Store extends EventEmitter {
   constructor () {
     super()
     this.state = {}
+    this.multiplier = 1.0
   }
 
   update (state) {
     this.state = state
+    this.emit('changed')
+  }
+
+  setMultiplier (multiplier) {
+    this.multiplier = multiplier
     this.emit('changed')
   }
 
