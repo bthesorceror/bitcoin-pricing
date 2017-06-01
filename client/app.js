@@ -49,3 +49,7 @@ ReactDOM.render(
 )
 
 Store.fetch()
+
+setInterval(() => {
+  Store.fetch()
+}, 10000)
