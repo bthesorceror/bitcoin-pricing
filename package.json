@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-client": "browserify client/app.js -o public/app.bundle.js -t [ babelify --presets [ es2015 react  ] ]",
     "watch-client": "watchify client/app.js -o public/app.bundle.js -t [ babelify --presets [ es2015 react  ] ]"
