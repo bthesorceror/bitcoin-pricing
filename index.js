@@ -26,22 +26,12 @@ app.get('/', (req, res) => {
 })
 
 app.get('/conversions', (req, res) => {
-  let warden = req.prison.incarcerate('conversions', (handler) => {
-    console.info('Making requests to markets')
-
-    req.convertor.getCurrent((err, data) => {
-      if (err) {
-        return res.json({
-          error: 'Could not complete request'
-        })
-      }
-
-      handler.done(data)
-    })
-  })
-
-  warden.once('done', (results) => {
+  req.conversions().then((results) => {
     res.json(results)
+  }).catch((err) => {
+    let message = 'Could not complete request'
+    console.dir(err)
+    res.json({ error: message, m: err })
   })
 })
 
